@@ -1,27 +1,25 @@
 import 'package:bloc_cleanarch/core/theme/app_palette.dart';
-import 'package:bloc_cleanarch/features/presentation/pages/login_page.dart';
+import 'package:bloc_cleanarch/features/presentation/pages/sign_up_page.dart';
 import 'package:bloc_cleanarch/features/presentation/widgets/auth_field.dart';
 import 'package:bloc_cleanarch/features/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
 
-@override
+  @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    nameController.dispose();
     super.dispose();
   }
 
@@ -31,18 +29,6 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const LoginPage(),
-              ),
-            );
-          },
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
@@ -52,22 +38,20 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Sign Up",
+                "Login",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 30),
-          
-              AuthField(hintText: "Name", controller: nameController),
-              SizedBox(height: 15),
+
               AuthField(hintText: "Email", controller: emailController),
               SizedBox(height: 15),
               AuthField(hintText: "Password",   controller: passwordController, isObscureText: true),
               SizedBox(height: 15),
-              AuthGradientButton(buttonText: "Sign Up"),
+              AuthGradientButton(buttonText: "Login"),
               SizedBox(height: 20),
               RichText(
                 text: TextSpan(
-                  text: "Already have an account? ",
+                  text: "Don't have an account? ",
                   style: Theme.of(context).textTheme.titleMedium,
                   children: [
                     TextSpan(
@@ -77,14 +61,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontWeight: FontWeight.bold,
                       ),
                       recognizer:
-                          TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginPage(),
-                                ),
-                              );
-                            },
+                      TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SignUpPage(),
+                            ),
+                          );
+                        },
                     ),
                   ],
                 ),
